@@ -3,19 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Site</title>
     <link rel="stylesheet" href="./static/style.css">
-    <title>My site</title>
 </head>
 <body>
-    <div class="falling-numbers-container"></div>
-    <div class="site-map-container">
-        <ul>
-            <li><a href="#">About Me</a></li>
-            <li><a href="/ctf">My CTF</a></li>
-            <li><a href="#">Projects</a></li>
-        </ul>
+    <!-- Site Map Page -->
+    <div id="site-map" class="page">
+        <div class="falling-numbers-container"></div>
+        <div class="site-map-container">
+            <ul>
+                <li><a href="#about-me" class="scroll-link">About Me</a></li>
+                <li><a href="/ctf">My CTF</a></li>
+                <li><a href="#">Projects</a></li>
+            </ul>
+        </div>
+        
     </div>
-    <div class="overlay"></div>
+
+    <!-- About Me Page -->
+    <div id="about-me" class="page">
+        <section class="about-me-section">
+            <h2>About Me</h2>
+            <p>Nothin here yet :D</p>
+            <a href="#" class="scroll-link">^</a>
+        </section>
+    </div>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="./static/script.js"></script>
 </body>
 </html>

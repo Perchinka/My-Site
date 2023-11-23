@@ -2,15 +2,22 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #000;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+/* Page Styling */
+.page {
+    height: 100vh;
+    scroll-snap-align: start;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #fff;
 }
 
-/* Falling Numbers Container */
 .falling-numbers-container {
     position: absolute;
     top: 0;
@@ -32,6 +39,11 @@ body {
     font-size: 25px;
     animation: falling-numbers 20s linear infinite;
     user-select: none; /* Making falling numbers unselectable */
+}
+
+/* Site Map Page */
+#site-map {
+    background-color: #000;
 }
 
 /* Site Map Container */
@@ -69,4 +81,13 @@ body {
 
 .site-map-container ul li a:hover {
     color: rgb(6, 201, 6); /* Change color on hover */
+}
+
+/* About Me Page */
+#about-me {
+    background-color: #111;
+}
+
+.about-me-section {
+    padding: 20px;
 }
