@@ -1,0 +1,72 @@
+/* Reset default margin and padding */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Falling Numbers Container */
+.falling-numbers-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+/* Falling Numbers Animation */
+@keyframes falling-numbers {
+    0% { transform: translateY(-20vh); opacity: 0; }
+    100% { transform: translateY(100vh); opacity: .7; }
+}
+
+.falling-numbers {
+    position: absolute;
+    color: #0f0;
+    font-size: 25px;
+    animation: falling-numbers 20s linear infinite;
+    user-select: none; /* Making falling numbers unselectable */
+}
+
+/* Site Map Container */
+.site-map-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 4vw; /* Responsive padding based on viewport width */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Less bright border */
+    background-color: rgba(4, 105, 4, 0.493); /* Green background */
+    width: 80vw; /* Responsive width based on viewport width */
+    max-width: 400px; /* Maximum width */
+    max-height: 80vh; /* Maximum height */
+    overflow: auto; /* Enable scrolling if content exceeds height */
+    text-align: center; /* Center text content */
+    user-select: none;
+}
+
+.site-map-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.site-map-container ul li {
+    margin: 2vh 0; /* Responsive margin based on viewport height */
+}
+
+.site-map-container ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 3vw; /* Responsive font size based on viewport width */
+    display: block;
+}
+
+.site-map-container ul li a:hover {
+    color: rgb(6, 201, 6); /* Change color on hover */
+}
