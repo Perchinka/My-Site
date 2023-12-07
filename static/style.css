@@ -91,3 +91,22 @@ body {
 .about-me-section {
     padding: 20px;
 }
+
+/* Back Link Styles */
+.back-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+/* Styling the SVG */
+.back-link svg {
+    fill: #fff;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+}
