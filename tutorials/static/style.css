@@ -60,3 +60,20 @@ a.item {
   margin: 0;
   color: #0f0; /* Green text */
 }
+
+/* Should  be in the bottom of the site, and contain link to the main page in the middle.*/
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #0f0; /* Green border */
+}
+
+/* Style the links inside the footer and remove the underline */
+.footer a {
+  color: #0f0;
+  text-decoration: none;
+}
