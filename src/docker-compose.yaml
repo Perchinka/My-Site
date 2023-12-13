@@ -1,0 +1,19 @@
+services:
+
+  database:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: docker
+      POSTGRES_DB: database
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - database
