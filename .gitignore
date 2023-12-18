@@ -4,8 +4,8 @@ __pycache__
 **.excalidraw
 
 # dependencies
-/node_modules
-/.pnp
+**node_modules
+**.pnp
 .pnp.js
 
 # testing
