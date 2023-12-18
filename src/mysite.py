@@ -1,5 +1,4 @@
 import uvicorn
-import psycopg2
 from fastapi import FastAPI, status
 
 from pydantic import BaseModel
@@ -13,6 +12,13 @@ class Tutorial(BaseModel):
     description: str = None
     visible: bool
     thumbnail: str = None
+
+class UpdateTutorialBodyRequest(BaseModel):
+    id: int
+    title: str
+    description: str
+    visible: bool
+    thumbnail: str
 
 
 app = FastAPI(debug=True)
@@ -57,14 +63,46 @@ async def create_post(tutorial: Tutorial):
 
     return
 
-@app.put("/tutorials/{tutorial_id}")
-async def update_post(tutorial_id: str):
-    return {"message": f"Tutorial {tutorial_id} has been updated"}
+@app.put("/tutorials/")
+async def update_post(tutorial: UpdateTutorialBodyRequest):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("UPDATE tutorials SET title = %s, description = %s, visible = %s, thumbnail = %s WHERE id = %s",
+                (tutorial.title, tutorial.description, tutorial.visible, tutorial.thumbnail, tutorial.id))
+    
+    cur.close()
+    conn.commit()
+    conn.close()
+
+    return
+
+@app.put("/tutorials/visibility/{id}")
+async def update_post_visibility(tutorial_id: str, visibility: bool):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("UPDATE tutorials SET visible = %s WHERE id = %s",
+                (visibility, tutorial_id))
+    
+    cur.close()
+    conn.commit()
+    conn.close()
+
+    return
 
 @app.delete("/tutorials/{id}")
 async def delete_post(tutorial_id: str):
-    return {"message": f"Tutorial {tutorial_id} has been deleted"}
+    conn = get_connection()
+    cur = conn.cursor()
 
+    cur.execute("DELETE FROM tutorials WHERE id = %s", (tutorial_id,))
+    
+    cur.close()
+    conn.commit()
+    conn.close()
+
+    return
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
