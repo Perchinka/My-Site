@@ -1,0 +1,79 @@
+body {
+  font-family: 'Courier New', monospace;
+  background-color: #000;
+  color: #0f0; /* Green text */
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 36px;
+  color: #0f0;
+}
+
+a.item {
+  text-decoration: none; /* Remove default underline on links */
+  color: inherit; /* Inherit text color */
+  display: block; /* Make the whole item a clickable block */
+}
+
+.items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.item {
+  background-color: #111; /* Dark background */
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #0f0; /* Green border */
+}
+
+.item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green box-shadow */
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #0f0; /* Green border for the image */
+}
+
+.item h2 {
+  margin: 0;
+  padding: 10px;
+  color: #0f0; /* Green text */
+}
+
+.item p {
+  padding: 10px;
+  margin: 0;
+  color: #0f0; /* Green text */
+}
+
+/* Should  be in the bottom of the site, and contain link to the main page in the middle.*/
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #0f0; /* Green border */
+}
+
+/* Style the links inside the footer and remove the underline */
+.footer a {
+  color: #0f0;
+  text-decoration: none;
+}

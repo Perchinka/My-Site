@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, status
+from fastapi.middleware.cors import CORSMiddleware
 
 from pydantic import BaseModel
 from typing import List
@@ -24,6 +25,15 @@ class UpdateTutorialBodyRequest(BaseModel):
 
 
 app = FastAPI(debug=True)
+# Allow CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
 
 @app.get("/")
 async def root():
@@ -57,7 +67,7 @@ async def create_post(tutorial: Tutorial):
     conn = get_connection()
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO tutorials (title, description, visible, thumbnail) VALUES (%s, %s, %s, %s, %s)",
+    cur.execute("INSERT INTO tutorials (title, description, visible, thumbnail, url) VALUES (%s, %s, %s, %s, %s)",
                 (tutorial.title, tutorial.description, tutorial.visible, tutorial.thumbnail, tutorial.url))
     cur.close()
     
