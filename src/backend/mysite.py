@@ -12,6 +12,7 @@ class Tutorial(BaseModel):
     description: str = None
     visible: bool
     thumbnail: str = None
+    url: str = None
 
 class UpdateTutorialBodyRequest(BaseModel):
     id: int
@@ -19,6 +20,7 @@ class UpdateTutorialBodyRequest(BaseModel):
     description: str
     visible: bool
     thumbnail: str
+    url: str
 
 
 app = FastAPI(debug=True)
@@ -42,7 +44,8 @@ async def get_tutorials():
             "title": row[1],
             "description": row[2],
             "visible": row[3],
-            "thumbnail": row[4]
+            "thumbnail": row[4],
+            "url": row[5]
         })
     cur.close()
     conn.close()
@@ -54,8 +57,8 @@ async def create_post(tutorial: Tutorial):
     conn = get_connection()
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO tutorials (title, description, visible, thumbnail) VALUES (%s, %s, %s, %s)",
-                (tutorial.title, tutorial.description, tutorial.visible, tutorial.thumbnail))
+    cur.execute("INSERT INTO tutorials (title, description, visible, thumbnail) VALUES (%s, %s, %s, %s, %s)",
+                (tutorial.title, tutorial.description, tutorial.visible, tutorial.thumbnail, tutorial.url))
     cur.close()
     
     conn.commit()
@@ -68,8 +71,8 @@ async def update_post(tutorial: UpdateTutorialBodyRequest):
     conn = get_connection()
     cur = conn.cursor()
 
-    cur.execute("UPDATE tutorials SET title = %s, description = %s, visible = %s, thumbnail = %s WHERE id = %s",
-                (tutorial.title, tutorial.description, tutorial.visible, tutorial.thumbnail, tutorial.id))
+    cur.execute("UPDATE tutorials SET title = %s, description = %s, visible = %s, thumbnail = %s, url = %s WHERE id = %s",
+                (tutorial.title, tutorial.description, tutorial.visible, tutorial.thumbnail, tutorial.id, tutorial.url))
     
     cur.close()
     conn.commit()
