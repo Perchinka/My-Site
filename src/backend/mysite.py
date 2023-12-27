@@ -35,11 +35,9 @@ class User(BaseModel):
     id: int = None
     username: str
     password: str
-    enabled: bool
-    id_role: int
-
-class UserInDB(User):
-    hashed_password: str
+    id_role: int # 0 - Admin, 1 - User TODO: Make Enum or something like that
+    email: str = None
+    verified: bool = False
 
 class Token(BaseModel):
     access_token: str
@@ -57,6 +55,7 @@ app.add_middleware(
 )
 
 
+# TODO: replace with html files from old_static
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
@@ -100,7 +99,7 @@ async def create_post(tutorial: Tutorial):
 
     return
 
-@app.put("/tutorials/", tags=["Tutorials"])
+@app.put("/tutorials", tags=["Tutorials"])
 async def update_post(tutorial: UpdateTutorialBodyRequest):
     conn = get_connection()
     cur = conn.cursor()
@@ -157,16 +156,27 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
     return {"access_token": access_token, "token_type": "bearer"}
 
-# TODO: Figure out how to move this function to auth.py
-async def get_current_active_user(current_user: User = Depends(get_current_user)):
-    if current_user[3] == False:
-        raise HTTPException(status_code=400, detail="Inactive user")
-    return current_user
-
 @app.get("/users/me", tags=["Authentification"])
-async def read_users_me(current_user: User = Depends(get_current_active_user)):
+async def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user
 
+# TODO: Unique username and email, password hashing
+@app.post("/users", tags=["Authentification"])
+async def create_new_user(username, password, email):
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
+
+        cur.execute("INSERT INTO users (username, password, email) VALUES (%s, %s, %s)",
+                    (username, password, email))
+        cur.close()
+        
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        return HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+
+    return HTTPException(status_code=status.HTTP_201_CREATED)
 
 
 if __name__ == "__main__":
