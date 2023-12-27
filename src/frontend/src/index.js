@@ -10,7 +10,6 @@ function getItems() {
         let data = fetch("http://127.0.0.1:8000/tutorials")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             const items_html = data.map(item => {
                 return (
                     <Item
@@ -29,7 +28,6 @@ function getItems() {
             );
         }
         );
-        return data;
     } catch (error) {
         console.log(error);
     }

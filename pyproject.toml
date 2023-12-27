@@ -10,6 +10,9 @@ python = "^3.11"
 fastapi = "^0.104.1"
 uvicorn = "^0.24.0.post1"
 psycopg2 = "^2.9.9"
+passlib = "^1.7.4"
+pyjwt = "^2.8.0"
+python-multipart = "^0.0.6"
 
 
 [build-system]
