@@ -2,7 +2,7 @@
 Just My Website
 ===
 
-Small personal website of mine :D (Just messing arround with techs, and practice)
+Small personal website (Just practice and messing arround with techs)
 
 ## Table of Contents
 
