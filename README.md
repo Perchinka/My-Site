@@ -15,8 +15,7 @@ Small personal website of mine :D (Just messing arround with techs, and practice
 1. `Python + FastAPI` for backend
 2. `JS + React` for frontend
 3. `PostgreSQL`
-
-All diagrams that describe how backend does work you can find in **src/backend Readme**. I used https://excalidraw.com here
+4. Excalidraw.com diagrams :D
 
 Installation and Setup
 ---
