@@ -55,11 +55,6 @@ app.add_middleware(
 )
 
 
-# TODO: replace with html files from old_static
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
 # Tutorials
 @app.get("/tutorials", response_model=List[Tutorial], 
          status_code=status.HTTP_200_OK, tags=["Tutorials"])

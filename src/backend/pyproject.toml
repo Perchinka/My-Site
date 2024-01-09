@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mysite"
+name = "app"
 version = "0.1.0"
 description = ""
 authors = ["Perchinka <alexsator.lukin@gmail.com>"]
