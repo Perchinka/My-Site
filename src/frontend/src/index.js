@@ -4,10 +4,13 @@ import ReactDOM from "react-dom/client";
 import Item from "./Resources";
 import "./styles.css"
 
+// Get base url from the environment 
+const url = process.env.BACKEND_URL || "http://127.0.0.1:8000";
+
 // Get items and put them in the div with id "items"
 function getItems() {
     try{
-        let data = fetch("http://127.0.0.1:8000/tutorials")
+        fetch(url+"/tutorials")
         .then(response => response.json())
         .then(data => {
             const items_html = data.map(item => {

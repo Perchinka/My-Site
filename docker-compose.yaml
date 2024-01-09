@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: docker
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+  backend:
+    build: src/backend
+    restart: always
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: docker
+      DB_PASSWORD: docker
+      DB_NAME: postgres
+      SECRET_KEY: changeme
+
+  frontend:
+    build: src/frontend
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    environment:
+      BACKEND_URL: backend:8000 
+    
