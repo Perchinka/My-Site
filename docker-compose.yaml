@@ -40,4 +40,3 @@ services:
       - backend
     environment:
       BACKEND_URL: backend:8000 
-    
